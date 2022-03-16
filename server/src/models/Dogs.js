@@ -8,7 +8,7 @@ const DogSchema = new Schema({
         required: true,
         unique: true,
     },
-    dogName:{
+    dogname:{
         type: String,
         required: true,
         unique: true,
@@ -16,6 +16,9 @@ const DogSchema = new Schema({
     breedId:{
         type: Schema.Types.ObjectId,
         ref: 'dogBreeds'
+    },
+    age:{
+        type: Number,
     },
     price:{
         type: Number,

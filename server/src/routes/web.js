@@ -2,6 +2,7 @@ const express = require('express');
 const userController = require('../controllers/userController')
 const cateController= require('../controllers/cateController');
 const breedController= require('../controllers/breedController');
+const dogController= require('../controllers/dogController');
 
 
 let router = express.Router();
@@ -23,6 +24,14 @@ let initWebRouter = (app) => {
     router.post("/api/create-breed_dog", breedController.createBreed);
     router.put("/api/edit-breed_dog/:id", breedController.editBreed);
     router.delete("/api/delete-breed_dog/:id", breedController.deleteBreed);
+
+    //crud dogs
+    router.get('/api/list-dog', dogController.getAllDog)
+    router.get('/api/get-dog/:id', dogController.getDog)
+    router.post("/api/create-dog", dogController.createDog);
+    router.put("/api/edit-dog/:id", dogController.editDog);
+    router.delete("/api/delete-dog/:id", dogController.deleteDog);
+
 
     return app.use("/", router);
 }
