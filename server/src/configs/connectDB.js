@@ -3,7 +3,7 @@ require('dotenv').config()
 
 const connectDB = async ()=>{
     try {
-        await mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@node-tt.ekoka.mongodb.net/node-tt?retryWrites=true&w=majority`,{
+        await mongoose.connect(`mongodb+srv://daovanhai:vanhaition@doan.ynuvq.mongodb.net/DoAn?retryWrites=true&w=majority`,{
             useNewUrlParser: true,
             useUnifiedTopology: true
         })
