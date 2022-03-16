@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
 const DogBreedSchema = new Schema({
-    breedName: {
+    breedname: {
         type: String,
         required: true,
         unique: true,
