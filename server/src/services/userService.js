@@ -62,16 +62,24 @@ const registerUser = (registerData) => {
         if (!check) {
           let checkname = await checkUserName(registerData.username)
           if(!checkname){
-            var hashedPasword = await bcrypt.hashSync(registerData.password, salt);
-            const newUser = await userDB.create({
-              email: registerData.email,
-              username: registerData.username,
-              password: hashedPasword
-            });
-            resolve({
-              success: true,
-              message: "register successfully"
-            });
+            if(registerData.username.length <4 || registerData.username.length >20) {
+              resolve({
+                success: false,
+                message: "username is too short or long",
+              });
+            }else{
+                var hashedPasword = await bcrypt.hashSync(registerData.password, salt);
+                const newUser = await userDB.create({
+                  email: registerData.email,
+                  username: registerData.username,
+                  password: hashedPasword
+                });
+                resolve({
+                  success: true,
+                  message: "register successfully"
+                });
+              }
+            
           }else{
             resolve({
               success: false,
