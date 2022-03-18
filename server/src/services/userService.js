@@ -2,6 +2,7 @@ const userDB = require("../models/User")
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 const bcrypt = require('bcryptjs');
+const { remove } = require("../models/User");
 var salt = bcrypt.genSaltSync(10);
 
 const checkUserEmail = (email) => {
@@ -111,7 +112,6 @@ const loginUser = (loginData) =>{
               if (result) {
                 userData.success = true;
                 userData.message = "Login successfully";
-                delete user.password;
                 const accessToken = jwt.sign({userId: user._id}, process.env.ACCESS_TOKEN_SECRET)
                 userData.user = user;
                 userData.accessToken = accessToken

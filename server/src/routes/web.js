@@ -4,6 +4,8 @@ const cateController= require('../controllers/cateController');
 const breedController= require('../controllers/breedController');
 const dogController= require('../controllers/dogController');
 
+const verifyToken = require('../middlewares/auth')
+
 
 let router = express.Router();
 let initWebRouter = (app) => {
@@ -14,10 +16,10 @@ let initWebRouter = (app) => {
     router.post('/api/login', userController.userLogin)
 
     // crud category
-    router.get('/api/list-category', cateController.getAllCate)
-    router.post("/api/create-category", cateController.createCate);
-    router.put("/api/edit-category/:id", cateController.editCate);
-    router.delete("/api/delete-category/:id", cateController.deleteCate);
+    router.get('/api/list-category', verifyToken, cateController.getAllCate)
+    router.post("/api/create-category", verifyToken, cateController.createCate);
+    router.put("/api/edit-category/:id", verifyToken, cateController.editCate);
+    router.delete("/api/delete-category/:id", verifyToken, cateController.deleteCate);
 
     //crud dogBreeds
     router.get('/api/list-breed_dog', breedController.getAllBreed)
